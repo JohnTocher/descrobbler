@@ -5,3 +5,13 @@ I listen to (and scrobble) a bunch of podcasts and music, this project is design
 
 It should separate podcast from music content, and put the two in a place I can easily do something with them later.
 
+## installation
+
+Depends on lsdyfm_tools:
+https://github.com/hugovk/lastfm-tools
+
+```
+pip install pylast
+```
+
+
