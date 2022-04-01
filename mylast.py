@@ -19,6 +19,7 @@ except KeyError:
 try:
     lastfm_username = os.environ["LASTFM_USERNAME"]
     lastfm_password_hash = os.environ["LASTFM_PASSWORD_HASH"]
+    print("Environment variables for user OK")
 except KeyError:
     # In order to perform a write operation you need to authenticate yourself
     lastfm_username = "my_username"
@@ -26,6 +27,7 @@ except KeyError:
     lastfm_password_hash = pylast.md5("my_password")
     print(lastfm_password_hash)
     # lastfm_password_hash = "my_password_hash"
+    print("Environment variables for user missing!")
 
 
 lastfm_network = pylast.LastFMNetwork(
