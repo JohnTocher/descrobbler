@@ -1,7 +1,7 @@
 ''' this file creates the objects used to access the scrobbling service api
 
     No actual creds should be stored here!
-    This module will be importad and used by the main code
+    This module will be imported and used by the main code
 '''
 
 import os
@@ -27,8 +27,11 @@ except KeyError:
     lastfm_password_hash = pylast.md5("my_password")
     print(lastfm_password_hash)
     # lastfm_password_hash = "my_password_hash"
-    print("Environment variables for user missing!")
-
+    print("Environment variables for user missing! So far:")
+    print(f"API_KEY:  {API_KEY}")
+    print(f"API_SECRET:  {API_SECRET}")
+    print(f"LFM USER:  {lastfm_username}")
+    print(f"LPW HASH:  {lastfm_password_hash}")
 
 lastfm_network = pylast.LastFMNetwork(
     api_key=API_KEY,
