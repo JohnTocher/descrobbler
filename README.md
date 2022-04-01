@@ -7,7 +7,7 @@ It should separate podcast from music content, and put the two in a place I can 
 
 ## installation
 
-Depends on lsdyfm_tools:
+Depends on lastfm_tools:
 https://github.com/hugovk/lastfm-tools
 
 ```
