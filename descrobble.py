@@ -17,7 +17,7 @@ from mylast import lastfm_network
 from mylast import lastfm_username
 from mylast import track_and_timestamp
 
-OUTPUT_PATH = "C:/Users/John/Sync/HomeSyn/Media/Podcasts/Scrobbles"
+OUTPUT_PATH = "C:/Users/John/Sync/HomeSyn/Media/Podcasts/Scrobbles" #ToDo - externalise this
 
 def generate_timestamp(time_to_use, stamp_type="default"):
     """ Genrate a text timestamp """

@@ -48,9 +48,7 @@ def track_and_timestamp(track):
 def print_track(track):
     print(track_and_timestamp(track))
 
-
 TRACK_SEPARATOR = " - "
-
 
 def split_artist_track(artist_track):
     artist_track = artist_track.replace(" – ", " - ")
