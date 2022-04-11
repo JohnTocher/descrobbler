@@ -14,4 +14,10 @@ https://github.com/hugovk/lastfm-tools
 pip install pylast
 ```
 
+## ToDo
+
+- Import user settings from a text file (including output file location)
+- get track duration information
+- discriminate between podcasts and music tracks
+- store the output in a (mysql?) database
 
