@@ -17,7 +17,7 @@ from mylast import lastfm_network
 from mylast import lastfm_username
 from mylast import track_and_timestamp
 
-OUTPUT_PATH = "C:/Users/John/Sync/HomeSyn/Media/Podcasts/Scrobbles" #ToDo - externalise this
+OUTPUT_PATH = "D:/Sync/HomeSyn/Media/Podcasts/Scrobbles" #ToDo - externalise this
 
 def generate_timestamp(time_to_use, stamp_type="default"):
     """ Genrate a text timestamp """
@@ -84,6 +84,6 @@ if __name__ == "__main__":
 
     if not args.username:
         args.username = lastfm_username
-    show_last_played(args, tracks_to_play=200, save_to_file=True, save_path=OUTPUT_PATH)
+    show_last_played(args, tracks_to_play=250, save_to_file=True, save_path=OUTPUT_PATH)
 else:
     print("Imported elsewehere")
