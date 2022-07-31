@@ -1,4 +1,4 @@
-''' this file creates the objects used to access the scrobbling service api
+''' This file creates the objects used to access the scrobbling service api
 
     No actual creds should be stored here!
     This module will be imported and used by the main code
@@ -6,7 +6,6 @@
 
 import os
 import sys
-
 import pylast
 
 try:

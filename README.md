@@ -5,6 +5,12 @@ I listen to (and scrobble) a bunch of podcasts and music, this project is design
 
 It should separate podcast from music content, and put the two in a place I can easily do something with them later.
 
+Refer to mylast.py for notes regarding some environment variables "LASTFM_API_KEY", "LASTFM_API_SECRET" to be configured for auth
+
+## Usage
+
+python .\descrobble.py
+
 ## installation
 
 Depends on lastfm_tools:
@@ -20,4 +26,5 @@ pip install pylast
 - get track duration information
 - discriminate between podcasts and music tracks
 - store the output in a (mysql?) database
+- write up the de
 
