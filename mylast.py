@@ -1,8 +1,14 @@
-''' This file creates the objects used to access the scrobbling service api
+""" This file creates the objects used to access the scrobbling service api
 
     No actual creds should be stored here!
     This module will be imported and used by the main code
-'''
+
+    Requires the existence of four correctly setup environment variables:
+    "LASTFM_API_KEY"
+    "LASTFM_API_SECRET"
+    "LASTFM_USERNAME"
+    "LASTFM_PASSWORD_HASH"
+"""
 
 import os
 import sys
@@ -47,12 +53,14 @@ def track_and_timestamp(track):
 def print_track(track):
     print(track_and_timestamp(track))
 
+
 TRACK_SEPARATOR = " - "
 
+
 def split_artist_track(artist_track):
-    artist_track = artist_track.replace(" – ", " - ")
-    artist_track = artist_track.replace("“", '"')
-    artist_track = artist_track.replace("”", '"')
+    artist_track = artist_track.replace(" – ", " - ")  # replace U+2013 with U_002d
+    artist_track = artist_track.replace("“", '"')  # replace smart quotes with regular
+    artist_track = artist_track.replace("”", '"')  # double quotes
 
     (artist, track) = artist_track.split(TRACK_SEPARATOR)
     artist = artist.strip()

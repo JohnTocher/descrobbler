@@ -1,9 +1,14 @@
-""" Empty python script -
+""" LastFM scrobble list processor
 
-    Bases on sample from pylast:
+    Downloads the list and creates a csv file for further processing / sharing
+    
+    Based on sample from pylast:
     https://github.com/pylast/pylast
 
-    installed with:
+    See README.md for details
+
+    Latest version should be at:
+    https://github.com/JohnTocher/descrobbler
 
 """
 
@@ -17,7 +22,7 @@ from mylast import lastfm_network
 from mylast import lastfm_username
 from mylast import track_and_timestamp
 
-OUTPUT_PATH = "D:/Sync/HomeSyn/Media/Podcasts/Scrobbles"  # ToDo - externalise this
+from config import settings
 
 
 def generate_timestamp(time_to_use, stamp_type="default"):
@@ -70,16 +75,21 @@ def get_recent_tracks(username, number):
     return recent_tracks
 
 
-if __name__ == "__main__":
+def retrieve_and_process_scrobbles():
+    """Main function - downloads scrobble list and produces output data"""
+
+    num_tracks = settings.DEFAULT_HISTORY_LEN
+    output_path = settings.OUTPUT_PATH
+
     parser = argparse.ArgumentParser(
-        description="Show 20 last played tracks",
+        description=f"Show {num_tracks} last played tracks",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument("-u", "--username", help="Last.fm username")
     parser.add_argument(
         "-n",
         "--number",
-        default=20,
+        default=num_tracks,
         type=int,
         help="Number of tracks to show (when no artist given)",
     )
@@ -87,6 +97,12 @@ if __name__ == "__main__":
 
     if not args.username:
         args.username = lastfm_username
-    show_last_played(args, tracks_to_play=250, save_to_file=True, save_path=OUTPUT_PATH)
+    show_last_played(
+        args, tracks_to_play=num_tracks, save_to_file=True, save_path=output_path
+    )
+
+
+if __name__ == "__main__":
+    retrieve_and_process_scrobbles()
 else:
-    print("Imported elsewehere")
+    print("Module imported elsewehere, nothing to do!")
