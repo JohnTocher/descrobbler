@@ -18,8 +18,8 @@ from pathlib import Path
 from fileinput import filename
 import pylast
 
-from mylast import lastfm_network
-from mylast import lastfm_username
+from mylast import get_lastfm_network
+#from mylast import lastfm_username
 from mylast import track_and_timestamp
 
 from config import settings
@@ -33,12 +33,12 @@ def generate_timestamp(time_to_use, stamp_type="default"):
     return new_stamp
 
 
-def show_last_played(user_args, tracks_to_play=20, save_to_file=False, save_path=""):
+def show_last_played(user_args, lastfm_conn=False,tracks_to_play=20, save_to_file=False, save_path=""):
     """Print the last n played tracks to the console"""
 
     print(user_args.username + " last played:")
     try:
-        recent_tracks = get_recent_tracks(user_args.username, tracks_to_play)
+        recent_tracks = get_recent_tracks(lastfm_conn, user_args.username, tracks_to_play)
     except pylast.WSError as e:
         print("Error: " + str(e))
 
@@ -67,8 +67,8 @@ def show_last_played(user_args, tracks_to_play=20, save_to_file=False, save_path
         print(f"Wrote {line_count} lines to file: {file_name}")
 
 
-def get_recent_tracks(username, number):
-    recent_tracks = lastfm_network.get_user(username).get_recent_tracks(limit=number)
+def get_recent_tracks(lastfm_conn, username, number):
+    recent_tracks = lastfm_conn.get_user(username).get_recent_tracks(limit=number)
     for i, track in enumerate(recent_tracks):
         printable = track_and_timestamp(track)
         print(str(i + 1) + " " + printable)
@@ -80,6 +80,13 @@ def retrieve_and_process_scrobbles():
 
     num_tracks = settings.DEFAULT_HISTORY_LEN
     output_path = settings.OUTPUT_PATH
+
+    lastfm_api = settings.MY_API_KEY
+    lastfm_secret = settings.MY_API_SECRET
+    lastfm_user = settings.MY_API_USER
+    lastfm_pw_hash = settings.MY_API_PW_HASH
+
+    lastfm_network = get_lastfm_network(lastfm_api, lastfm_secret,lastfm_user, lastfm_pw_hash)
 
     parser = argparse.ArgumentParser(
         description=f"Show {num_tracks} last played tracks",
@@ -96,9 +103,9 @@ def retrieve_and_process_scrobbles():
     args = parser.parse_args()
 
     if not args.username:
-        args.username = lastfm_username
+        args.username = lastfm_user
     show_last_played(
-        args, tracks_to_play=num_tracks, save_to_file=True, save_path=output_path
+        args, lastfm_network,tracks_to_play=num_tracks, save_to_file=True, save_path=output_path
     )
 
 
