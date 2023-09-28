@@ -15,7 +15,7 @@
 import argparse
 import datetime
 from pathlib import Path
-from fileinput import filename
+#from fileinput import filename
 import pylast
 
 from mylast import get_lastfm_network
