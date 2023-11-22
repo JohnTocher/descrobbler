@@ -15,7 +15,6 @@
 import argparse
 import datetime
 from pathlib import Path
-#from fileinput import filename
 import pylast
 
 from mylast import get_lastfm_network
@@ -26,7 +25,7 @@ from config import settings
 
 
 def generate_timestamp(time_to_use, stamp_type="default"):
-    """Genrate a text timestamp"""
+    """Generate a text timestamp"""
 
     new_stamp = time_to_use.strftime("%Y%m%d-%H%M%S")
 

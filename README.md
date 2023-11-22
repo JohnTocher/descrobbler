@@ -16,9 +16,18 @@ python .\descrobble.py
 Depends on lastfm_tools:
 https://github.com/hugovk/lastfm-tools
 
+and uses dynaconf for configuration management
+https://www.dynaconf.com/
+
 ```
 pip install pylast
+pip install dynaconf
 ```
+
+these are in requirements.txt
+
+## configuration
+
 
 ## ToDo
 
