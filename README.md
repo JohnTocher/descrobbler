@@ -9,7 +9,7 @@ Refer to mylast.py for notes regarding some environment variables "LASTFM_API_KE
 
 ## Usage
 
-python .\descrobble.py
+```python .\descrobble.py```
 
 ## installation
 
@@ -19,7 +19,7 @@ https://github.com/hugovk/lastfm-tools
 and uses dynaconf for configuration management
 https://www.dynaconf.com/
 
-```
+```bash
 pip install pylast
 pip install dynaconf
 ```

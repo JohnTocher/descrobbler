@@ -8,7 +8,7 @@ DEFAULT_HISTORY_LEN = 200 # Number of tracks to go back to by default
 # Optional settings
 # none
 
-# You will also need the following settings (again in .secrets.toml not here!)
+# You will also need the following settings (again please piut them in .secrets.toml not here!)
 # MY_API_KEY = "do"
 # MY_API_SECRET = "not"
 # MY_API_USER = "use"
