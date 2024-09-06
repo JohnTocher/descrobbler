@@ -1,6 +1,6 @@
 # Required settings
 
-DEFAULT_HISTORY_LEN = 200 # Number of tracks to go back to by default
+DEFAULT_HISTORY_LEN = 250 # Number of tracks to go back to by default
 
 # Update and move USER_OUTPUT_PATH to .secrets.toml if you'd rather not have it in version control
 # OUTPUT_PATH = "/home/user"
