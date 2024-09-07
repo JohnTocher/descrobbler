@@ -35,5 +35,5 @@ these are in requirements.txt
 - get track duration information
 - discriminate between podcasts and music tracks
 - store the output in a (mysql?) database
-- write up the de
+- write up the default settings options
 

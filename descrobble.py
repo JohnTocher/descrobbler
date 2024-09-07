@@ -18,10 +18,14 @@ from pathlib import Path
 import pylast
 
 from mylast import get_lastfm_network
-#from mylast import lastfm_username
+
+# from mylast import lastfm_username
 from mylast import track_and_timestamp
 
 from config import settings
+
+# from rich.prompt import Prompt
+from rich.console import Console
 
 
 def generate_timestamp(time_to_use, stamp_type="default"):
@@ -32,12 +36,16 @@ def generate_timestamp(time_to_use, stamp_type="default"):
     return new_stamp
 
 
-def show_last_played(user_args, lastfm_conn=False,tracks_to_play=20, save_to_file=False, save_path=""):
+def show_last_played(
+    user_args, lastfm_conn=False, tracks_to_play=20, save_to_file=False, save_path=""
+):
     """Print the last n played tracks to the console"""
 
     print(user_args.username + " last played:")
     try:
-        recent_tracks = get_recent_tracks(lastfm_conn, user_args.username, tracks_to_play)
+        recent_tracks = get_recent_tracks(
+            lastfm_conn, user_args.username, tracks_to_play
+        )
     except pylast.WSError as e:
         print("Error: " + str(e))
 
@@ -85,7 +93,9 @@ def retrieve_and_process_scrobbles():
     lastfm_user = settings.MY_API_USER
     lastfm_pw_hash = settings.MY_API_PW_HASH
 
-    lastfm_network = get_lastfm_network(lastfm_api, lastfm_secret,lastfm_user, lastfm_pw_hash)
+    lastfm_network = get_lastfm_network(
+        lastfm_api, lastfm_secret, lastfm_user, lastfm_pw_hash
+    )
 
     parser = argparse.ArgumentParser(
         description=f"Show {num_tracks} last played tracks",
@@ -104,11 +114,52 @@ def retrieve_and_process_scrobbles():
     if not args.username:
         args.username = lastfm_user
     show_last_played(
-        args, lastfm_network,tracks_to_play=num_tracks, save_to_file=True, save_path=output_path
+        args,
+        lastfm_network,
+        tracks_to_play=num_tracks,
+        save_to_file=True,
+        save_path=output_path,
     )
 
 
+def show_menu():
+    """Presents the user with a menu"""
+
+    menu_choices = [
+        "(U)pdate Scrobbles from web",
+        "[bold red]L[/]ist scrobble files",
+        "(S)omething else",
+        "(Q)uit",
+    ]
+
+    highlight_start = "[bold red]"
+    highlight_end = "[/]"
+    menu_text = f"Please select an option:\n"
+    for menu_item in menu_choices:
+
+        if "(" in menu_item:
+            menu_item = menu_item.replace("(", highlight_start)
+            menu_item = menu_item.replace(")", highlight_end)
+        menu_text += f"{menu_item}\n"
+        print(f"Line is: [{menu_item}]")
+
+    console = Console()
+    user_choice = console.input(menu_text)
+    # user_choice = console.t
+    first_char = user_choice[0:1].upper()
+
+    if first_char == "U":
+        retrieve_and_process_scrobbles()
+    elif first_char == "L":
+        print(f"List!")
+    elif first_char == "Q":
+        print("All done, quitting")
+    else:
+        print("Invalid choice, quitting")
+
+
 if __name__ == "__main__":
-    retrieve_and_process_scrobbles()
+    # retrieve_and_process_scrobbles()
+    show_menu()
 else:
     print("Module imported elsewehere, nothing to do!")
